@@ -6,12 +6,20 @@ const app =express()
 const mongoose = require('mongoose')
 
 //connecting to DB
+const DB="mongodb+srv://laundryApp:laundryApp@cluster0.ndckq.mongodb.net/laundryApp?retryWrites=true&w=majority";
 
-mongoose.connect("mongodb+srv://laundryApp:laundryApp@cluster0.ndckq.mongodb.net/laundryApp?retryWrites=true&w=majority")
+mongoose.connect(DB,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(()=> {
+    console.log("connection successful");
+}).catch((err)=>console.log(err));
+
+// mongoose.connect("mongodb+srv://laundryApp:laundryApp@cluster0.ndckq.mongodb.net/laundryApp?retryWrites=true&w=majority")
 // mongoose.connect("mongodb://localhost:27017/laundryApp")
-
-.then( () => console.log("MongoDB Connected"))
-.catch( (err) => console.log("MongoDB error"))
+ 
+// .then( () => console.log("MongoDB Connected"))
+// .catch( (err) => console.log("MongoDB error"))
 
 //external middleware
 const cors = require('cors')
